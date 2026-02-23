@@ -29,14 +29,12 @@ The design uses a **light & minimal** aesthetic with warm gold accents and profe
 
 ## Screenshots
 
-> _Add screenshots after deploying (e.g. paste images into `/screenshots`)_
-
-```
-screenshots/
-  hero.png
-  courses.png
-  gallery.png
-```
+![Hero section](src/demo1.png)
+![About section](src/demo2.png)
+![Courses section](src/demo3.png)
+![Gallery section](src/demo4.png)
+![Testimonials section](src/demo5.png)
+![Contact section](src/demo6.png)
 
 ---
 
@@ -76,10 +74,22 @@ The page is designed to be deployed on any static hosting:
 
 ```
 Lab2/
-├── index.html    # Main page
-├── reset.css     # CSS reset
-├── style.css     # All styles
-└── README.md     # This file
+├── index.html       # Main page
+├── reset.css        # CSS reset
+├── style.css        # All styles
+├── README.md        # This file
+└── src/
+    ├── demo1.png    # Hero screenshot
+    ├── demo2.png    # About screenshot
+    ├── demo3.png    # Courses screenshot
+    ├── demo4.png    # Gallery screenshot
+    ├── demo5.png    # Testimonials screenshot
+    ├── demo6.png    # Contact screenshot
+    ├── graduation.jpg
+    ├── performance1.jpg
+    ├── performance2.jpg
+    ├── performance3.jpg
+    └── performance4.jpg
 ```
 
 ---
