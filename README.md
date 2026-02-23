@@ -16,14 +16,14 @@ The design uses a **light & minimal** aesthetic with warm gold accents and profe
 
 ## Sections
 
-| Section | Description |
-|---|---|
-| **Hero** | Full-viewport intro with headline and CTA buttons |
-| **About Us** | Academy story, values, and key statistics |
-| **Courses** | 4 course cards (beginner → advanced) |
-| **Gallery** | CSS gradient grid showcasing academy life |
-| **Testimonials** | Student reviews (3 cards) |
-| **Contact** | Address, phone, email, and enrollment form |
+| Section          | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| **Hero**         | Full-viewport intro with headline and CTA buttons |
+| **About Us**     | Academy story, values, and key statistics         |
+| **Courses**      | 4 course cards (beginner → advanced)              |
+| **Gallery**      | CSS gradient grid showcasing academy life         |
+| **Testimonials** | Student reviews (3 cards)                         |
+| **Contact**      | Address, phone, email, and enrollment form        |
 
 ---
 
