@@ -2,7 +2,7 @@
 
 A clean, responsive landing page for **Kvadrat** — a professional acting academy based in Chișinău, Moldova.
 
-> **Live demo:** _[Add your deployed URL here]_
+> **Live demo:** [https://maxroenco.github.io/Lab2/](https://maxroenco.github.io/Lab2/)
 
 ---
 
