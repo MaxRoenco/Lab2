@@ -86,6 +86,20 @@
       </section>
 
       <!-- ============================================================
+         MOBILE-ONLY: Quick benefits strip
+         ============================================================ -->
+      <section class="mobile-benefits mobile-only" aria-label="Why choose Kvadrat">
+        <h2 class="mobile-benefits__title">Why Choose Kvadrat?</h2>
+        <ul class="mobile-benefits__list">
+          <li>🎭 Professional theatre &amp; film instructors</li>
+          <li>🎬 Small groups — max 15 students per class</li>
+          <li>✨ First trial class is completely free</li>
+          <li>📍 Located in the heart of Chișinău</li>
+        </ul>
+        <a href="#contact" class="btn btn--accent">Book Your Free Trial</a>
+      </section>
+
+      <!-- ============================================================
          ABOUT
          ============================================================ -->
       <section class="about" id="about" aria-label="About Kvadrat">
@@ -556,6 +570,57 @@
         el.style.transition = "opacity 0.55s ease, transform 0.55s ease";
         observer.observe(el);
       });
+
+      // ------------------------
+      // Mascot — touch/click support for mobile
+      // ------------------------
+      const mascotEl = document.getElementById("mascot");
+      const mascotBubble = document.getElementById("mascotBubble");
+
+      mascotEl.addEventListener("click", () => {
+        mascotBubble.classList.toggle("mascot__bubble--visible");
+      });
     </script>
+
+    <!-- ============================================================
+       MASCOT — Thalia (comedy theatre mask)
+       ============================================================ -->
+    <div class="mascot" id="mascot" role="complementary" aria-label="Thalia, the Kvadrat mascot">
+      <div class="mascot__bubble" id="mascotBubble" role="tooltip">
+        <strong>Welcome to Kvadrat! 🎭</strong>
+        <span>Ready to find your stage?<br /><a href="#contact">Enroll today</a> — first class is free!</span>
+      </div>
+      <div class="mascot__figure" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="76" height="76" role="img" aria-label="Comedy theatre mask mascot">
+          <!-- Shadow -->
+          <ellipse cx="44" cy="85" rx="18" ry="4" fill="rgba(0,0,0,0.14)"/>
+          <!-- Face fill -->
+          <circle cx="44" cy="42" r="36" fill="#f5d76e"/>
+          <!-- Highlight -->
+          <circle cx="32" cy="30" r="15" fill="#fadf7f" opacity="0.45"/>
+          <!-- Face outline -->
+          <circle cx="44" cy="42" r="36" fill="none" stroke="#c49b3c" stroke-width="2.5"/>
+          <!-- Left eyebrow (arched high — comedy) -->
+          <path d="M20 27 Q29 18 38 24" stroke="#5c3d00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Right eyebrow -->
+          <path d="M50 24 Q59 18 68 27" stroke="#5c3d00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Left eye (happy crescent) -->
+          <path d="M20 37 Q29 29 38 37" stroke="#5c3d00" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Right eye -->
+          <path d="M50 37 Q59 29 68 37" stroke="#5c3d00" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Left cheek blush -->
+          <ellipse cx="20" cy="51" rx="7" ry="5" fill="#e87878" opacity="0.5"/>
+          <!-- Right cheek blush -->
+          <ellipse cx="68" cy="51" rx="7" ry="5" fill="#e87878" opacity="0.5"/>
+          <!-- Big open smile -->
+          <path d="M26 57 Q44 73 62 57" stroke="#5c3d00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Nose dot -->
+          <circle cx="44" cy="48" r="2.5" fill="#c49b3c" opacity="0.65"/>
+          <!-- Decorative stars -->
+          <text x="10" y="18" font-size="9" fill="#c49b3c" opacity="0.8">✦</text>
+          <text x="73" y="16" font-size="7" fill="#c49b3c" opacity="0.7">✦</text>
+        </svg>
+      </div>
+    </div>
   </body>
 </html>
