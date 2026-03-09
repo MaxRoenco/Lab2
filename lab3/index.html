@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kvadrat Acting Academy — professional acting training in Chișinău, Moldova. Courses for beginners to advanced students."
+    />
+    <title>Kvadrat — Acting Academy | Chișinău</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (partial framework migration) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <div class="nav__container">
+        <a href="#home" class="nav__logo" aria-label="Kvadrat homepage">
+          <span class="nav__logo-square" aria-hidden="true"></span>
+          KVADRAT
+        </a>
+
+        <ul class="nav__links" id="navLinks" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="#contact" class="btn btn--accent btn--nav">Enroll Now</a>
+
+        <button
+          class="nav__burger"
+          id="navBurger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ============================================================
+         HERO
+         ============================================================ -->
+      <section class="hero" id="home" aria-label="Hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <span class="hero__label">Chișinău's Premier Acting Academy</span>
+
+          <h1 class="hero__title">Find Your<br />Stage.</h1>
+
+          <p class="hero__subtitle">
+            Kvadrat is where passion meets craft. Professional acting training
+            in a creative, supportive environment — for beginners to advanced
+            performers.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#courses" class="btn btn--accent">Explore Courses</a>
+            <a href="#about" class="btn btn--outline">Learn More</a>
+          </div>
+        </div>
+
+        <div class="hero__scroll-hint" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="hero__scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         MOBILE-ONLY SPOTLIGHT SECTION
+         Visible only on screens ≤ 768px
+         ============================================================ -->
+      <section class="mobile-spotlight" aria-label="Academy highlights">
+        <div class="mobile-spotlight__inner">
+          <p class="mobile-spotlight__eyebrow">
+            🎭 Trusted by Moldova's aspiring actors
+          </p>
+          <div class="mobile-spotlight__stats">
+            <div class="mobile-spotlight__stat">
+              <strong>7+</strong>
+              <span>Years</span>
+            </div>
+            <div class="mobile-spotlight__stat">
+              <strong>300+</strong>
+              <span>Graduates</span>
+            </div>
+            <div class="mobile-spotlight__stat">
+              <strong>12</strong>
+              <span>Courses</span>
+            </div>
+          </div>
+          <a href="#courses" class="btn btn--accent btn--full"
+            >Browse All Courses</a
+          >
+        </div>
+      </section>
+
+      <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+      <section class="about" id="about" aria-label="About Kvadrat">
+        <div class="container">
+          <div class="about__grid">
+            <!-- Visual side -->
+            <div class="about__visual">
+              <div class="about__image-frame">
+                <img
+                  src="../src/graduation.jpg"
+                  alt="Kvadrat graduation ceremony"
+                />
+              </div>
+
+              <div class="about__stats">
+                <div class="about__stat">
+                  <span class="about__stat-number">7+</span>
+                  <span class="about__stat-label"
+                    >Years of&nbsp;experience</span
+                  >
+                </div>
+                <div class="about__stat">
+                  <span class="about__stat-number">300+</span>
+                  <span class="about__stat-label">Graduates</span>
+                </div>
+                <div class="about__stat">
+                  <span class="about__stat-number">12</span>
+                  <span class="about__stat-label">Courses offered</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text side -->
+            <div class="about__text">
+              <span class="section-label">About Us</span>
+              <h2 class="section-title">
+                A Space Where Art<br />Comes to Life
+              </h2>
+              <p>
+                Kvadrat Acting Academy was founded with a single mission: to
+                give every aspiring actor in Moldova the tools, confidence, and
+                technique to tell powerful stories on any stage.
+              </p>
+              <p>
+                Our instructors are professional theatre and film practitioners
+                who bring real-world experience into every class. Whether you're
+                stepping on stage for the first time or preparing for a
+                professional audition, Kvadrat has a program for you.
+              </p>
+              <a href="#courses" class="btn btn--accent">See Our Programs</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         COURSES
+         ============================================================ -->
+      <section class="courses" id="courses" aria-label="Courses">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-label">Programs</span>
+            <h2 class="section-title">Our Courses</h2>
+            <p class="section-subtitle">
+              Choose the path that fits your level and ambition.
+            </p>
+          </div>
+
+          <div class="courses__grid">
+            <!-- Card 1 -->
+            <article class="course-card">
+              <div class="course-card__icon" aria-hidden="true">🎭</div>
+              <span class="course-card__level">Beginner</span>
+              <h3 class="course-card__title">Acting Fundamentals</h3>
+              <p class="course-card__desc">
+                Master the basics of stage presence, character work, and
+                emotional truth. The perfect starting point for anyone new to
+                acting.
+              </p>
+              <ul class="course-card__details">
+                <li>Duration: 3 months</li>
+                <li>2 sessions / week</li>
+                <li>Max 12 students</li>
+              </ul>
+              <a href="#contact" class="btn btn--outline btn--sm">Enroll</a>
+            </article>
+
+            <!-- Card 2 — Featured -->
+            <article class="course-card course-card--featured">
+              <span class="course-card__badge">Most Popular</span>
+              <div class="course-card__icon" aria-hidden="true">🎬</div>
+              <span class="course-card__level">Intermediate</span>
+              <h3 class="course-card__title">Scene Study &amp; Improv</h3>
+              <p class="course-card__desc">
+                Deep dive into scene analysis, partner work, and improvisation.
+                Build spontaneity and truthfulness in every performance.
+              </p>
+              <ul class="course-card__details">
+                <li>Duration: 4 months</li>
+                <li>3 sessions / week</li>
+                <li>Max 10 students</li>
+              </ul>
+              <a href="#contact" class="btn btn--accent btn--sm">Enroll</a>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="course-card">
+              <div class="course-card__icon" aria-hidden="true">🎙️</div>
+              <span class="course-card__level">All Levels</span>
+              <h3 class="course-card__title">Voice &amp; Movement</h3>
+              <p class="course-card__desc">
+                Explore the full physical and vocal range of the actor. Learn to
+                use your body and voice as expressive instruments.
+              </p>
+              <ul class="course-card__details">
+                <li>Duration: 2 months</li>
+                <li>2 sessions / week</li>
+                <li>Max 15 students</li>
+              </ul>
+              <a href="#contact" class="btn btn--outline btn--sm">Enroll</a>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="course-card">
+              <div class="course-card__icon" aria-hidden="true">📽️</div>
+              <span class="course-card__level">Advanced</span>
+              <h3 class="course-card__title">On-Camera Acting</h3>
+              <p class="course-card__desc">
+                Transition your skills to film and TV. Study screen technique,
+                self-taping, and working with directors on set.
+              </p>
+              <ul class="course-card__details">
+                <li>Duration: 3 months</li>
+                <li>2 sessions / week</li>
+                <li>Max 8 students</li>
+              </ul>
+              <a href="#contact" class="btn btn--outline btn--sm">Enroll</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         GALLERY
+         ============================================================ -->
+      <section class="gallery" id="gallery" aria-label="Gallery">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-label">Gallery</span>
+            <h2 class="section-title">Life at Kvadrat</h2>
+            <p class="section-subtitle">
+              Glimpses from our rehearsals, performances, and workshops.
+            </p>
+          </div>
+
+          <div class="gallery__grid" role="list">
+            <div class="gallery__item gallery__item--1" role="listitem">
+              <img src="../src/performance1.jpg" alt="Acting Workshop" />
+              <span>Acting Workshop</span>
+            </div>
+            <div class="gallery__item gallery__item--2" role="listitem">
+              <img src="../src/performance2.jpg" alt="Student Showcase" />
+              <span>Student Showcase</span>
+            </div>
+            <div class="gallery__item gallery__item--3" role="listitem">
+              <img src="../src/performance3.jpg" alt="Improvisation Session" />
+              <span>Improvisation Session</span>
+            </div>
+            <div class="gallery__item gallery__item--4" role="listitem">
+              <img src="../src/performance4.jpg" alt="Scene Study" />
+              <span>Scene Study</span>
+            </div>
+            <div class="gallery__item gallery__item--5" role="listitem">
+              <img src="../src/graduation.jpg" alt="Graduation Ceremony" />
+              <span>Graduation Ceremony</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         TESTIMONIALS
+         ============================================================ -->
+      <section class="testimonials" id="testimonials" aria-label="Testimonials">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-label">Testimonials</span>
+            <h2 class="section-title">What Our Students Say</h2>
+          </div>
+
+          <div class="testimonials__grid">
+            <article class="testimonial-card">
+              <div class="testimonial-card__quote" aria-hidden="true">"</div>
+              <p class="testimonial-card__text">
+                Kvadrat completely changed my relationship with performing. I
+                went from terrified to standing ovations in just one year. The
+                instructors genuinely care about each student.
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar" aria-hidden="true">
+                  AM
+                </div>
+                <div>
+                  <strong>Andreea Moraru</strong>
+                  <span>Acting Fundamentals graduate</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card testimonial-card--featured">
+              <div class="testimonial-card__quote" aria-hidden="true">"</div>
+              <p class="testimonial-card__text">
+                The Scene Study course pushed me further than I thought
+                possible. I learned to be present, to listen, and to trust my
+                instincts. I can't imagine my life without Kvadrat.
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar" aria-hidden="true">
+                  DP
+                </div>
+                <div>
+                  <strong>Dmitri Popescu</strong>
+                  <span>Scene Study &amp; Improv alumnus</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-card__quote" aria-hidden="true">"</div>
+              <p class="testimonial-card__text">
+                The Voice &amp; Movement workshop was a revelation. I had no
+                idea how much tension I was carrying on stage. Now my presence
+                is completely different — free and authentic.
+              </p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar" aria-hidden="true">
+                  EL
+                </div>
+                <div>
+                  <strong>Elena Lungu</strong>
+                  <span>Voice &amp; Movement student</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+         CONTACT
+         ============================================================ -->
+      <section class="contact" id="contact" aria-label="Contact">
+        <div class="container">
+          <div class="contact__grid">
+            <!-- Info -->
+            <div class="contact__info">
+              <span class="section-label">Get in Touch</span>
+              <h2 class="section-title">Ready to Start?</h2>
+              <p>
+                Take the first step toward your acting journey. Fill out the
+                form and we'll get back to you within 24 hours.
+              </p>
+
+              <ul class="contact__details">
+                <li>
+                  <div class="contact__icon" aria-hidden="true">📍</div>
+                  <span>str. Sfatul Țării 18, Chișinău, Moldova</span>
+                </li>
+                <li>
+                  <div class="contact__icon" aria-hidden="true">📞</div>
+                  <a href="tel:+37369000000">+373 69 000 000</a>
+                </li>
+                <li>
+                  <div class="contact__icon" aria-hidden="true">✉️</div>
+                  <a href="mailto:hello@kvadrat.md">hello@kvadrat.md</a>
+                </li>
+                <li>
+                  <div class="contact__icon" aria-hidden="true">🕐</div>
+                  <span>Mon–Fri: 10:00–20:00<br />Sat: 10:00–16:00</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Form -->
+            <form class="contact__form" action="#" method="post" novalidate>
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+373 xx xxx xxx"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="course">Interested Course</label>
+                <select id="course" name="course">
+                  <option value="">Select a course…</option>
+                  <option value="fundamentals">Acting Fundamentals</option>
+                  <option value="scene-study">Scene Study &amp; Improv</option>
+                  <option value="voice">Voice &amp; Movement</option>
+                  <option value="on-camera">On-Camera Acting</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Any questions or additional info…"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--accent btn--full">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="#home" class="nav__logo" aria-label="Kvadrat homepage">
+              <span class="nav__logo-square" aria-hidden="true"></span>
+              KVADRAT
+            </a>
+            <p>
+              Chișinău's acting academy for aspiring performers of all levels.
+            </p>
+          </div>
+
+          <div class="footer__links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#courses">Courses</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__links">
+            <h4>Courses</h4>
+            <ul>
+              <li><a href="#courses">Acting Fundamentals</a></li>
+              <li><a href="#courses">Scene Study &amp; Improv</a></li>
+              <li><a href="#courses">Voice &amp; Movement</a></li>
+              <li><a href="#courses">On-Camera Acting</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__social">
+            <h4>Follow Us</h4>
+            <div class="footer__social-links">
+              <a
+                class="social-link"
+                href="https://www.facebook.com/kvadrat.academy.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Facebook</a
+              >
+              <a class="social-link" href="#">Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; 2025 Kvadrat Acting Academy. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+       MASCOT — Theatrical comedy-mask character (Clippy-style)
+       Appears after 3 s, floats, shows CTA on hover
+       ============================================================ -->
+    <div class="mascot" id="mascot" aria-label="Kvadrat mascot">
+      <!-- Speech bubble (shown on hover) -->
+      <div class="mascot__bubble" role="tooltip" id="mascotBubble">
+        <p>Ready to step into the spotlight?</p>
+        <a href="#contact">Enroll today →</a>
+        <div class="mascot__bubble-arrow" aria-hidden="true"></div>
+      </div>
+
+      <!-- SVG character: comedy theatre mask with beret -->
+      <div class="mascot__character" aria-hidden="true">
+        <svg
+          width="72"
+          height="72"
+          viewBox="0 0 80 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Soft aura glow -->
+          <circle cx="40" cy="46" r="32" fill="#f5edd8" opacity="0.85" />
+
+          <!-- Face -->
+          <circle cx="40" cy="46" r="26" fill="#c49b3c" />
+
+          <!-- Forehead highlight -->
+          <ellipse
+            cx="40"
+            cy="32"
+            rx="14"
+            ry="7"
+            fill="#d4b050"
+            opacity="0.45"
+          />
+
+          <!-- Cheek blush -->
+          <ellipse
+            cx="22"
+            cy="52"
+            rx="7"
+            ry="4.5"
+            fill="#e07820"
+            opacity="0.28"
+          />
+          <ellipse
+            cx="58"
+            cy="52"
+            rx="7"
+            ry="4.5"
+            fill="#e07820"
+            opacity="0.28"
+          />
+
+          <!-- Happy-arc eyes (closed comedy style) -->
+          <path
+            d="M 23 41 Q 28.5 35 34 41"
+            stroke="#1c1a16"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            d="M 46 41 Q 51.5 35 57 41"
+            stroke="#1c1a16"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <!-- Raised eyebrows (comedy/surprise) -->
+          <path
+            d="M 20 34 Q 27 27 34 33"
+            stroke="#1c1a16"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            d="M 46 33 Q 53 27 60 34"
+            stroke="#1c1a16"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+
+          <!-- Big grinning smile -->
+          <path
+            d="M 22 56 Q 40 70 58 56"
+            stroke="#1c1a16"
+            stroke-width="3"
+            fill="#fff8f0"
+            stroke-linecap="round"
+          />
+
+          <!-- Beret hat -->
+          <ellipse cx="40" cy="22" rx="22" ry="6.5" fill="#2a2822" />
+          <ellipse cx="40" cy="15" rx="16" ry="11" fill="#1c1a16" />
+          <!-- Gold hat band -->
+          <rect x="20" y="19" width="40" height="4" rx="1.5" fill="#c49b3c" />
+          <!-- Beret button -->
+          <circle cx="40" cy="8" r="3" fill="#c49b3c" />
+
+          <!-- Sparkle top-left -->
+          <path
+            d="M 9 18 L 10.5 13 L 12 18 L 17 19.5 L 12 21 L 10.5 26 L 9 21 L 4 19.5 Z"
+            fill="#f5edd8"
+          />
+          <!-- Sparkle top-right -->
+          <path
+            d="M 65 11 L 66.2 7 L 67.4 11 L 71 12.2 L 67.4 13.4 L 66.2 17 L 65 13.4 L 61 12.2 Z"
+            fill="#f5edd8"
+            opacity="0.85"
+          />
+          <!-- Small dot accents -->
+          <circle cx="74" cy="24" r="2.5" fill="#c49b3c" opacity="0.55" />
+          <circle cx="6" cy="32" r="2" fill="#c49b3c" opacity="0.45" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MOBILE-ONLY STICKY CTA BAR (Tailwind styled)
+       Visible only on mobile (≤ 768px)
+       ============================================================ -->
+    <div
+      class="mobile-cta-bar"
+      aria-label="Enroll call to action"
+      id="mobileCta"
+    >
+      <span class="mobile-cta-bar__text">🎭 New courses starting soon!</span>
+      <a href="#contact" class="btn btn--accent btn--sm">Enroll Now</a>
+    </div>
+
+    <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+    <script>
+      // ------------------------
+      // Nav — scrolled state
+      // ------------------------
+      const nav = document.getElementById("nav");
+
+      function updateNav() {
+        nav.classList.toggle("nav--scrolled", window.scrollY > 60);
+      }
+
+      window.addEventListener("scroll", updateNav, { passive: true });
+      updateNav();
+
+      // ------------------------
+      // Nav — burger menu
+      // ------------------------
+      const burger = document.getElementById("navBurger");
+      const navLinks = document.getElementById("navLinks");
+
+      burger.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("nav__links--open");
+        burger.classList.toggle("nav__burger--active", isOpen);
+        burger.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      // Close menu when a link is clicked
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("nav__links--open");
+          burger.classList.remove("nav__burger--active");
+          burger.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // ------------------------
+      // Scroll reveal (subtle)
+      // ------------------------
+      const revealEls = document.querySelectorAll(
+        ".about__grid, .course-card, .testimonial-card, .gallery__item, .contact__grid, .mobile-spotlight__inner",
+      );
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+
+      revealEls.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(24px)";
+        el.style.transition = "opacity 0.55s ease, transform 0.55s ease";
+        observer.observe(el);
+      });
+
+      // ------------------------
+      // Mascot — dismiss on click outside
+      // ------------------------
+      const mascot = document.getElementById("mascot");
+      const mascotBubble = document.getElementById("mascotBubble");
+
+      // Close bubble when clicking the mascot (toggle)
+      mascot.addEventListener("click", () => {
+        mascotBubble.classList.toggle("mascot__bubble--visible");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!mascot.contains(e.target)) {
+          mascotBubble.classList.remove("mascot__bubble--visible");
+        }
+      });
+
+      // ------------------------
+      // Mobile CTA bar — hide after scroll to contact
+      // ------------------------
+      const mobileCta = document.getElementById("mobileCta");
+      const contactSection = document.getElementById("contact");
+
+      const ctaObserver = new IntersectionObserver(
+        ([entry]) => {
+          mobileCta.classList.toggle(
+            "mobile-cta-bar--hidden",
+            entry.isIntersecting,
+          );
+        },
+        { threshold: 0.1 },
+      );
+
+      if (contactSection) ctaObserver.observe(contactSection);
+    </script>
+  </body>
+</html>
