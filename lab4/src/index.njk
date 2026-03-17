@@ -1,0 +1,131 @@
+---
+layout: base.njk
+title: Kvadrat — Acting Academy | Chișinău
+hero_title: "Find Your<br />Stage."
+hero_subtitle: "Kvadrat is where passion meets craft. Professional acting training in a creative, supportive environment — for beginners to advanced performers."
+hero_label: "Chișinău's Premier Acting Academy"
+about_title: "A Space Where Art<br />Comes to Life"
+about_text1: "Kvadrat Acting Academy was founded with a single mission: to give every aspiring actor in Moldova the tools, confidence, and technique to tell powerful stories on any stage."
+about_text2: "Our instructors are professional theatre and film practitioners who bring real-world experience into every class. Whether you're stepping on stage for the first time or preparing for a professional audition, Kvadrat has a program for you."
+contact_title: "Ready to Start?"
+contact_text: "Take the first step toward your acting journey. Fill out the form and we'll get back to you within 24 hours."
+---
+
+<!-- HERO -->
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__content">
+    <span class="hero__label">{{ hero_label }}</span>
+    <h1 class="hero__title">{{ hero_title | safe }}</h1>
+    <p class="hero__subtitle">{{ hero_subtitle }}</p>
+    <div class="hero__actions">
+      <a href="#courses" class="btn btn--accent">Explore Courses</a>
+      <a href="#about" class="btn btn--outline">Learn More</a>
+    </div>
+  </div>
+  <div class="hero__scroll-hint" aria-hidden="true">
+    <span>Scroll</span><div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about" aria-label="About Kvadrat">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__visual">
+        <!-- Placeholder for image -->
+        <div class="about__image-frame" style="background: #ccc; min-height: 400px; display: flex; align-items:center; justify-content:center; color:#555">
+          Image via CMS
+        </div>
+        <div class="about__stats">
+          <div class="about__stat">
+            <span class="about__stat-number">7+</span><span class="about__stat-label">Years of experience</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">300+</span><span class="about__stat-label">Graduates</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">12</span><span class="about__stat-label">Courses</span>
+          </div>
+        </div>
+      </div>
+      <div class="about__text">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">{{ about_title | safe }}</h2>
+        <p>{{ about_text1 }}</p>
+        <p>{{ about_text2 }}</p>
+        <a href="#courses" class="btn btn--accent">See Our Programs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses" aria-label="Courses">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Programs</span>
+      <h2 class="section-title">Our Courses</h2>
+    </div>
+    <div class="courses__grid">
+      {% for course in collections.courses %}
+      <article class="course-card {% if course.data.featured %}course-card--featured{% endif %}">
+        {% if course.data.featured %}<span class="course-card__badge">Most Popular</span>{% endif %}
+        <div class="course-card__icon" aria-hidden="true">{{ course.data.icon }}</div>
+        <span class="course-card__level">{{ course.data.level }}</span>
+        <h3 class="course-card__title">{{ course.data.title }}</h3>
+        <p class="course-card__desc">{{ course.data.description }}</p>
+        <ul class="course-card__details">
+          <li>Duration: {{ course.data.duration }}</li>
+          <li>{{ course.data.sessions }}</li>
+          <li>Max {{ course.data.max_students }} students</li>
+        </ul>
+        <a href="#contact" class="btn {% if course.data.featured %}btn--accent{% else %}btn--outline{% endif %} btn--sm">Enroll</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials" aria-label="Testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">What Our Students Say</h2>
+    </div>
+    <div class="testimonials__grid">
+      {% for testimonial in collections.testimonials %}
+      <article class="testimonial-card {% if testimonial.data.featured %}testimonial-card--featured{% endif %}">
+        <div class="testimonial-card__quote" aria-hidden="true">"</div>
+        <p class="testimonial-card__text">{{ testimonial.data.quote }}</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" aria-hidden="true">{{ testimonial.data.initials }}</div>
+          <div>
+            <strong>{{ testimonial.data.author }}</strong>
+            <span>{{ testimonial.data.role }}</span>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="container">
+    <div class="contact__grid">
+      <div class="contact__info">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">{{ contact_title }}</h2>
+        <p>{{ contact_text }}</p>
+        <ul class="contact__details">
+          <li>📍 <span>str. Sfatul Țării 18, Chișinău, Moldova</span></li>
+          <li>📞 <a href="tel:+37369000000">+373 69 000 000</a></li>
+          <li>✉️ <a href="mailto:hello@kvadrat.md">hello@kvadrat.md</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
