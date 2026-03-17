@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Landing Page"
+        name: "index"
+        file: "src/index.njk"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Hero Label", name: "hero_label", widget: "string"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
+          - {label: "About Title", name: "about_title", widget: "string"}
+          - {label: "About Text Part 1", name: "about_text1", widget: "text"}
+          - {label: "About Text Part 2", name: "about_text2", widget: "text"}
+          - {label: "Contact Title", name: "contact_title", widget: "string"}
+          - {label: "Contact Text", name: "contact_text", widget: "text"}
+
+  - name: "courses"
+    label: "Courses"
+    folder: "src/courses"
+    create: true
+    slug: "{{year}}-{{month}}-{{title}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Level", name: "level", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Duration", name: "duration", widget: "string"}
+      - {label: "Sessions", name: "sessions", widget: "string"}
+      - {label: "Max Students", name: "max_students", widget: "number"}
+      - {label: "Icon", name: "icon", widget: "string"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Tags", name: "tags", widget: "hidden", default: "courses"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "src/testimonials"
+    create: true
+    fields:
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Initials", name: "initials", widget: "string"}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Quote", name: "quote", widget: "text"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Tags", name: "tags", widget: "hidden", default: "testimonials"}
+      - {label: "Body", name: "body", widget: "markdown"}
