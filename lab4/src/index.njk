@@ -1,131 +1,347 @@
 ---
 layout: base.njk
-title: Kvadrat — Acting Academy | Chișinău
-hero_title: "Find Your<br />Stage."
-hero_subtitle: "Kvadrat is where passion meets craft. Professional acting training in a creative, supportive environment — for beginners to advanced performers."
-hero_label: "Chișinău's Premier Acting Academy"
-about_title: "A Space Where Art<br />Comes to Life"
-about_text1: "Kvadrat Acting Academy was founded with a single mission: to give every aspiring actor in Moldova the tools, confidence, and technique to tell powerful stories on any stage."
-about_text2: "Our instructors are professional theatre and film practitioners who bring real-world experience into every class. Whether you're stepping on stage for the first time or preparing for a professional audition, Kvadrat has a program for you."
-contact_title: "Ready to Start?"
-contact_text: "Take the first step toward your acting journey. Fill out the form and we'll get back to you within 24 hours."
+title: Kvadrat - Acting Academy | Chisinau
 ---
+{% set home = collections.home[0].data %}
 
-<!-- HERO -->
 <section class="hero" id="home" aria-label="Hero">
   <div class="hero__bg" aria-hidden="true"></div>
+
   <div class="hero__content">
-    <span class="hero__label">{{ hero_label }}</span>
-    <h1 class="hero__title">{{ hero_title | safe }}</h1>
-    <p class="hero__subtitle">{{ hero_subtitle }}</p>
+    <span class="hero__label">{{ home.hero_label }}</span>
+
+    <h1 class="hero__title">{{ home.hero_title | safe }}</h1>
+
+    <p class="hero__subtitle">{{ home.hero_subtitle }}</p>
+
     <div class="hero__actions">
-      <a href="#courses" class="btn btn--accent">Explore Courses</a>
-      <a href="#about" class="btn btn--outline">Learn More</a>
+      <a href="{{ home.hero_primary_href }}" class="btn btn--accent"
+        >{{ home.hero_primary_label }}</a
+      >
+      <a href="{{ home.hero_secondary_href }}" class="btn btn--outline"
+        >{{ home.hero_secondary_label }}</a
+      >
     </div>
   </div>
+
   <div class="hero__scroll-hint" aria-hidden="true">
-    <span>Scroll</span><div class="hero__scroll-line"></div>
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<section class="mobile-spotlight" aria-label="Academy highlights">
+  <div class="mobile-spotlight__inner mx-auto max-w-[480px] text-center">
+    <p class="mobile-spotlight__eyebrow">{{ home.mobile_spotlight_eyebrow }}</p>
+    <div class="mobile-spotlight__stats">
+      <div class="mobile-spotlight__stat">
+        <strong>{{ home.mobile_stat_1_value }}</strong>
+        <span>{{ home.mobile_stat_1_label }}</span>
+      </div>
+      <div class="mobile-spotlight__stat">
+        <strong>{{ home.mobile_stat_2_value }}</strong>
+        <span>{{ home.mobile_stat_2_label }}</span>
+      </div>
+      <div class="mobile-spotlight__stat">
+        <strong>{{ home.mobile_stat_3_value }}</strong>
+        <span>{{ home.mobile_stat_3_label }}</span>
+      </div>
+    </div>
+    <a href="{{ home.mobile_spotlight_cta_href }}" class="btn btn--accent btn--full"
+      >{{ home.mobile_spotlight_cta_label }}</a
+    >
+  </div>
+</section>
+
 <section class="about" id="about" aria-label="About Kvadrat">
   <div class="container">
     <div class="about__grid">
       <div class="about__visual">
-        <!-- Placeholder for image -->
-        <div class="about__image-frame" style="background: #ccc; min-height: 400px; display: flex; align-items:center; justify-content:center; color:#555">
-          Image via CMS
+        <div class="about__image-frame">
+          <img src="{{ home.about_image }}" alt="{{ home.about_image_alt }}" />
         </div>
+
         <div class="about__stats">
           <div class="about__stat">
-            <span class="about__stat-number">7+</span><span class="about__stat-label">Years of experience</span>
+            <span class="about__stat-number">{{ home.about_stat_1_value }}</span>
+            <span class="about__stat-label">{{ home.about_stat_1_label }}</span>
           </div>
           <div class="about__stat">
-            <span class="about__stat-number">300+</span><span class="about__stat-label">Graduates</span>
+            <span class="about__stat-number">{{ home.about_stat_2_value }}</span>
+            <span class="about__stat-label">{{ home.about_stat_2_label }}</span>
           </div>
           <div class="about__stat">
-            <span class="about__stat-number">12</span><span class="about__stat-label">Courses</span>
+            <span class="about__stat-number">{{ home.about_stat_3_value }}</span>
+            <span class="about__stat-label">{{ home.about_stat_3_label }}</span>
           </div>
         </div>
       </div>
+
       <div class="about__text">
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">{{ about_title | safe }}</h2>
-        <p>{{ about_text1 }}</p>
-        <p>{{ about_text2 }}</p>
-        <a href="#courses" class="btn btn--accent">See Our Programs</a>
+        <span class="section-label">{{ home.about_label }}</span>
+        <h2 class="section-title">{{ home.about_title | safe }}</h2>
+        <p>{{ home.about_text_1 }}</p>
+        <p>{{ home.about_text_2 }}</p>
+        <a href="{{ home.about_cta_href }}" class="btn btn--accent"
+          >{{ home.about_cta_label }}</a
+        >
       </div>
     </div>
   </div>
 </section>
 
-<!-- COURSES -->
 <section class="courses" id="courses" aria-label="Courses">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Programs</span>
-      <h2 class="section-title">Our Courses</h2>
+      <span class="section-label">{{ home.programs_label }}</span>
+      <h2 class="section-title">{{ home.programs_title }}</h2>
+      <p class="section-subtitle">{{ home.programs_subtitle }}</p>
     </div>
+
     <div class="courses__grid">
       {% for course in collections.courses %}
-      <article class="course-card {% if course.data.featured %}course-card--featured{% endif %}">
-        {% if course.data.featured %}<span class="course-card__badge">Most Popular</span>{% endif %}
-        <div class="course-card__icon" aria-hidden="true">{{ course.data.icon }}</div>
-        <span class="course-card__level">{{ course.data.level }}</span>
-        <h3 class="course-card__title">{{ course.data.title }}</h3>
-        <p class="course-card__desc">{{ course.data.description }}</p>
-        <ul class="course-card__details">
-          <li>Duration: {{ course.data.duration }}</li>
-          <li>{{ course.data.sessions }}</li>
-          <li>Max {{ course.data.max_students }} students</li>
-        </ul>
-        <a href="#contact" class="btn {% if course.data.featured %}btn--accent{% else %}btn--outline{% endif %} btn--sm">Enroll</a>
-      </article>
+        <article class="course-card{% if course.data.featured %} course-card--featured{% endif %}">
+          {% if course.data.featured %}
+            <span class="course-card__badge">Most Popular</span>
+          {% endif %}
+          <div class="course-card__icon" aria-hidden="true">{{ course.data.icon | safe }}</div>
+          <span class="course-card__level">{{ course.data.level }}</span>
+          <h3 class="course-card__title">{{ course.data.title }}</h3>
+          <p class="course-card__desc">{{ course.data.description }}</p>
+          <ul class="course-card__details">
+            <li>Duration: {{ course.data.duration }}</li>
+            <li>{{ course.data.sessions }}</li>
+            <li>Max {{ course.data.max_students }} students</li>
+          </ul>
+          <a
+            href="#contact"
+            class="btn{% if course.data.featured %} btn--accent{% else %} btn--outline{% endif %} btn--sm"
+            >Enroll</a
+          >
+        </article>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<section class="gallery" id="gallery" aria-label="Gallery">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">{{ home.gallery_label }}</span>
+      <h2 class="section-title">{{ home.gallery_title }}</h2>
+      <p class="section-subtitle">{{ home.gallery_subtitle }}</p>
+    </div>
+
+    <div class="gallery__grid" role="list">
+      {% for item in collections.galleryItems %}
+        <div class="gallery__item gallery__item--{{ loop.index }}" role="listitem">
+          <img src="{{ item.data.image }}" alt="{{ item.data.alt }}" />
+          <span>{{ item.data.caption }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <section class="testimonials" id="testimonials" aria-label="Testimonials">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Testimonials</span>
-      <h2 class="section-title">What Our Students Say</h2>
+      <span class="section-label">{{ home.testimonials_label }}</span>
+      <h2 class="section-title">{{ home.testimonials_title }}</h2>
     </div>
+
     <div class="testimonials__grid">
       {% for testimonial in collections.testimonials %}
-      <article class="testimonial-card {% if testimonial.data.featured %}testimonial-card--featured{% endif %}">
-        <div class="testimonial-card__quote" aria-hidden="true">"</div>
-        <p class="testimonial-card__text">{{ testimonial.data.quote }}</p>
-        <div class="testimonial-card__author">
-          <div class="testimonial-card__avatar" aria-hidden="true">{{ testimonial.data.initials }}</div>
-          <div>
-            <strong>{{ testimonial.data.author }}</strong>
-            <span>{{ testimonial.data.role }}</span>
+        <article class="testimonial-card{% if testimonial.data.featured %} testimonial-card--featured{% endif %}">
+          <div class="testimonial-card__quote" aria-hidden="true">"</div>
+          <p class="testimonial-card__text">{{ testimonial.data.quote }}</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar" aria-hidden="true">
+              {{ testimonial.data.initials }}
+            </div>
+            <div>
+              <strong>{{ testimonial.data.author }}</strong>
+              <span>{{ testimonial.data.role }}</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact" aria-label="Contact">
   <div class="container">
     <div class="contact__grid">
       <div class="contact__info">
-        <span class="section-label">Get in Touch</span>
-        <h2 class="section-title">{{ contact_title }}</h2>
-        <p>{{ contact_text }}</p>
+        <span class="section-label">{{ home.contact_label }}</span>
+        <h2 class="section-title">{{ home.contact_title }}</h2>
+        <p>{{ home.contact_text }}</p>
+
         <ul class="contact__details">
-          <li>📍 <span>str. Sfatul Țării 18, Chișinău, Moldova</span></li>
-          <li>📞 <a href="tel:+37369000000">+373 69 000 000</a></li>
-          <li>✉️ <a href="mailto:hello@kvadrat.md">hello@kvadrat.md</a></li>
+          <li>
+            <div class="contact__icon" aria-hidden="true">&#128205;</div>
+            <span>{{ home.contact_address }}</span>
+          </li>
+          <li>
+            <div class="contact__icon" aria-hidden="true">&#128222;</div>
+            <a href="tel:{{ home.contact_phone_link }}">{{ home.contact_phone }}</a>
+          </li>
+          <li>
+            <div class="contact__icon" aria-hidden="true">&#9993;</div>
+            <a href="mailto:{{ home.contact_email }}">{{ home.contact_email }}</a>
+          </li>
+          <li>
+            <div class="contact__icon" aria-hidden="true">&#128337;</div>
+            <span>{{ home.contact_hours | replace(" | ", "<br />") | safe }}</span>
+          </li>
         </ul>
       </div>
+
+      <form class="contact__form" action="#" method="post" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+373 xx xxx xxx"
+            autocomplete="tel"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="course">Interested Course</label>
+          <select id="course" name="course">
+            <option value="">Select a course...</option>
+            {% for course in collections.courses %}
+              <option value="{{ course.fileSlug }}">{{ course.data.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Any questions or additional info..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--accent btn--full">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
+
+<div class="mascot" id="mascot" aria-label="Kvadrat mascot">
+  <div class="mascot__bubble" role="tooltip" id="mascotBubble">
+    <p>{{ home.mascot_message }}</p>
+    <a href="{{ home.mascot_cta_href }}">{{ home.mascot_cta_label }}</a>
+    <div class="mascot__bubble-arrow" aria-hidden="true"></div>
+  </div>
+
+  <div class="mascot__character" aria-hidden="true">
+    <svg
+      width="72"
+      height="72"
+      viewBox="0 0 80 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="40" cy="46" r="32" fill="#f5edd8" opacity="0.85" />
+      <circle cx="40" cy="46" r="26" fill="#c49b3c" />
+      <ellipse cx="40" cy="32" rx="14" ry="7" fill="#d4b050" opacity="0.45" />
+      <ellipse cx="22" cy="52" rx="7" ry="4.5" fill="#e07820" opacity="0.28" />
+      <ellipse cx="58" cy="52" rx="7" ry="4.5" fill="#e07820" opacity="0.28" />
+
+      <path
+        d="M 23 41 Q 28.5 35 34 41"
+        stroke="#1c1a16"
+        stroke-width="3"
+        fill="none"
+        stroke-linecap="round"
+      />
+      <path
+        d="M 46 41 Q 51.5 35 57 41"
+        stroke="#1c1a16"
+        stroke-width="3"
+        fill="none"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M 20 34 Q 27 27 34 33"
+        stroke="#1c1a16"
+        stroke-width="2.5"
+        fill="none"
+        stroke-linecap="round"
+      />
+      <path
+        d="M 46 33 Q 53 27 60 34"
+        stroke="#1c1a16"
+        stroke-width="2.5"
+        fill="none"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M 22 56 Q 40 70 58 56"
+        stroke="#1c1a16"
+        stroke-width="3"
+        fill="#fff8f0"
+        stroke-linecap="round"
+      />
+
+      <ellipse cx="40" cy="22" rx="22" ry="6.5" fill="#2a2822" />
+      <ellipse cx="40" cy="15" rx="16" ry="11" fill="#1c1a16" />
+      <rect x="20" y="19" width="40" height="4" rx="1.5" fill="#c49b3c" />
+      <circle cx="40" cy="8" r="3" fill="#c49b3c" />
+
+      <path
+        d="M 9 18 L 10.5 13 L 12 18 L 17 19.5 L 12 21 L 10.5 26 L 9 21 L 4 19.5 Z"
+        fill="#f5edd8"
+      />
+      <path
+        d="M 65 11 L 66.2 7 L 67.4 11 L 71 12.2 L 67.4 13.4 L 66.2 17 L 65 13.4 L 61 12.2 Z"
+        fill="#f5edd8"
+        opacity="0.85"
+      />
+      <circle cx="74" cy="24" r="2.5" fill="#c49b3c" opacity="0.55" />
+      <circle cx="6" cy="32" r="2" fill="#c49b3c" opacity="0.45" />
+    </svg>
+  </div>
+</div>
+
+<div class="mobile-cta-bar items-center" aria-label="Enroll call to action" id="mobileCta">
+  <span class="mobile-cta-bar__text">{{ home.mobile_cta_text }}</span>
+  <a href="{{ home.mobile_cta_href }}" class="btn btn--accent btn--sm"
+    >{{ home.mobile_cta_label }}</a
+  >
+</div>
