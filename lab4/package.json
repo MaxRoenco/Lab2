@@ -1,18 +1,16 @@
 {
-  "name": "lab4",
+  "name": "lab4-kvadrat-ssg",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Lab 4 static site setup using Eleventy and Decap CMS",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "eleventy --serve",
     "build": "eleventy",
-    "serve": "eleventy --serve"
+    "start": "eleventy --serve",
+    "cms:proxy": "decap-server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "decap-server": "^3.2.0"
   }
 }
