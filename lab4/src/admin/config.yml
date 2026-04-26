@@ -1,54 +1,366 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: main
 
-media_folder: "src/images"
-public_folder: "/images"
+local_backend: true
+
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
 
 collections:
-  - name: "pages"
-    label: "Pages"
+  - name: "global"
+    label: "Global Settings"
     files:
-      - label: "Landing Page"
-        name: "index"
-        file: "src/index.njk"
+      - label: "Site Data"
+        name: "site"
+        file: "src/_data/site.json"
+        format: "json"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Hero Label", name: "hero_label", widget: "string"}
-          - {label: "Hero Title", name: "hero_title", widget: "string"}
-          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
-          - {label: "About Title", name: "about_title", widget: "string"}
-          - {label: "About Text Part 1", name: "about_text1", widget: "text"}
-          - {label: "About Text Part 2", name: "about_text2", widget: "text"}
-          - {label: "Contact Title", name: "contact_title", widget: "string"}
-          - {label: "Contact Text", name: "contact_text", widget: "text"}
+          - label: "Meta"
+            name: "meta"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Language", name: "lang", widget: "string" }
+          - { label: "Brand", name: "brand", widget: "string" }
+          - label: "Navigation"
+            name: "nav"
+            widget: "list"
+            summary: "{{fields.label}} -> {{fields.href}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Href", name: "href", widget: "string" }
+          - label: "Navigation CTA"
+            name: "navCta"
+            widget: "object"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Href", name: "href", widget: "string" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - {
+                  label: "Brand Description",
+                  name: "brandDescription",
+                  widget: "text",
+                }
+              - label: "Quick Links"
+                name: "quickLinks"
+                widget: "list"
+                summary: "{{fields.label}} -> {{fields.href}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+              - label: "Courses Links"
+                name: "coursesLinks"
+                widget: "list"
+                summary: "{{fields.label}} -> {{fields.href}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+              - label: "Social Links"
+                name: "social"
+                widget: "list"
+                summary: "{{fields.label}} -> {{fields.href}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+
+  - name: "home"
+    label: "Landing Page"
+    files:
+      - label: "Home Sections"
+        name: "home"
+        file: "src/content/home.md"
+        fields:
+          - { label: "Tags", name: "tags", widget: "hidden", default: "home" }
+          - {
+              label: "Permalink",
+              name: "permalink",
+              widget: "hidden",
+              default: false,
+            }
+          - { label: "Hero Label", name: "hero_label", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
+          - {
+              label: "Hero Primary CTA Label",
+              name: "hero_primary_label",
+              widget: "string",
+            }
+          - {
+              label: "Hero Primary CTA Href",
+              name: "hero_primary_href",
+              widget: "string",
+            }
+          - {
+              label: "Hero Secondary CTA Label",
+              name: "hero_secondary_label",
+              widget: "string",
+            }
+          - {
+              label: "Hero Secondary CTA Href",
+              name: "hero_secondary_href",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Spotlight Eyebrow",
+              name: "mobile_spotlight_eyebrow",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 1 Value",
+              name: "mobile_stat_1_value",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 1 Label",
+              name: "mobile_stat_1_label",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 2 Value",
+              name: "mobile_stat_2_value",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 2 Label",
+              name: "mobile_stat_2_label",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 3 Value",
+              name: "mobile_stat_3_value",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Stat 3 Label",
+              name: "mobile_stat_3_label",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Spotlight CTA Label",
+              name: "mobile_spotlight_cta_label",
+              widget: "string",
+            }
+          - {
+              label: "Mobile Spotlight CTA Href",
+              name: "mobile_spotlight_cta_href",
+              widget: "string",
+            }
+          - { label: "About Label", name: "about_label", widget: "string" }
+          - { label: "About Title", name: "about_title", widget: "string" }
+          - { label: "About Paragraph 1", name: "about_text_1", widget: "text" }
+          - { label: "About Paragraph 2", name: "about_text_2", widget: "text" }
+          - {
+              label: "About CTA Label",
+              name: "about_cta_label",
+              widget: "string",
+            }
+          - {
+              label: "About CTA Href",
+              name: "about_cta_href",
+              widget: "string",
+            }
+          - { label: "About Image", name: "about_image", widget: "image" }
+          - {
+              label: "About Image Alt",
+              name: "about_image_alt",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 1 Value",
+              name: "about_stat_1_value",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 1 Label",
+              name: "about_stat_1_label",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 2 Value",
+              name: "about_stat_2_value",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 2 Label",
+              name: "about_stat_2_label",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 3 Value",
+              name: "about_stat_3_value",
+              widget: "string",
+            }
+          - {
+              label: "About Stat 3 Label",
+              name: "about_stat_3_label",
+              widget: "string",
+            }
+          - {
+              label: "Programs Label",
+              name: "programs_label",
+              widget: "string",
+            }
+          - {
+              label: "Programs Title",
+              name: "programs_title",
+              widget: "string",
+            }
+          - {
+              label: "Programs Subtitle",
+              name: "programs_subtitle",
+              widget: "text",
+            }
+          - { label: "Gallery Label", name: "gallery_label", widget: "string" }
+          - { label: "Gallery Title", name: "gallery_title", widget: "string" }
+          - {
+              label: "Gallery Subtitle",
+              name: "gallery_subtitle",
+              widget: "text",
+            }
+          - {
+              label: "Testimonials Label",
+              name: "testimonials_label",
+              widget: "string",
+            }
+          - {
+              label: "Testimonials Title",
+              name: "testimonials_title",
+              widget: "string",
+            }
+          - { label: "Contact Label", name: "contact_label", widget: "string" }
+          - { label: "Contact Title", name: "contact_title", widget: "string" }
+          - { label: "Contact Text", name: "contact_text", widget: "text" }
+          - {
+              label: "Contact Address",
+              name: "contact_address",
+              widget: "string",
+            }
+          - { label: "Contact Phone", name: "contact_phone", widget: "string" }
+          - {
+              label: "Contact Phone Link",
+              name: "contact_phone_link",
+              widget: "string",
+            }
+          - { label: "Contact Email", name: "contact_email", widget: "string" }
+          - { label: "Contact Hours", name: "contact_hours", widget: "string" }
+          - { label: "Mascot Message", name: "mascot_message", widget: "text" }
+          - {
+              label: "Mascot CTA Label",
+              name: "mascot_cta_label",
+              widget: "string",
+            }
+          - {
+              label: "Mascot CTA Href",
+              name: "mascot_cta_href",
+              widget: "string",
+            }
+          - {
+              label: "Mobile CTA Text",
+              name: "mobile_cta_text",
+              widget: "string",
+            }
+          - {
+              label: "Mobile CTA Label",
+              name: "mobile_cta_label",
+              widget: "string",
+            }
+          - {
+              label: "Mobile CTA Href",
+              name: "mobile_cta_href",
+              widget: "string",
+            }
 
   - name: "courses"
     label: "Courses"
-    folder: "src/courses"
+    folder: "src/content/courses"
     create: true
-    slug: "{{year}}-{{month}}-{{title}}"
+    slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Level", name: "level", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Duration", name: "duration", widget: "string"}
-      - {label: "Sessions", name: "sessions", widget: "string"}
-      - {label: "Max Students", name: "max_students", widget: "number"}
-      - {label: "Icon", name: "icon", widget: "string"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false}
-      - {label: "Tags", name: "tags", widget: "hidden", default: "courses"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Tags", name: "tags", widget: "hidden", default: "course" }
+      - {
+          label: "Permalink",
+          name: "permalink",
+          widget: "hidden",
+          default: false,
+        }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Level", name: "level", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Sessions", name: "sessions", widget: "string" }
+      - {
+          label: "Max Students",
+          name: "max_students",
+          widget: "number",
+          value_type: "int",
+        }
+      - { label: "Icon (emoji or HTML entity)", name: "icon", widget: "string" }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "testimonials"
     label: "Testimonials"
-    folder: "src/testimonials"
+    folder: "src/content/testimonials"
     create: true
+    slug: "{{slug}}"
     fields:
-      - {label: "Author", name: "author", widget: "string"}
-      - {label: "Initials", name: "initials", widget: "string"}
-      - {label: "Role", name: "role", widget: "string"}
-      - {label: "Quote", name: "quote", widget: "text"}
-      - {label: "Featured", name: "featured", widget: "boolean", default: false}
-      - {label: "Tags", name: "tags", widget: "hidden", default: "testimonials"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "hidden",
+          default: "testimonial",
+        }
+      - {
+          label: "Permalink",
+          name: "permalink",
+          widget: "hidden",
+          default: false,
+        }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Initials", name: "initials", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Quote", name: "quote", widget: "text" }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "src/content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "hidden",
+          default: "galleryItem",
+        }
+      - {
+          label: "Permalink",
+          name: "permalink",
+          widget: "hidden",
+          default: false,
+        }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image Alt", name: "alt", widget: "string" }
+      - { label: "Caption", name: "caption", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }

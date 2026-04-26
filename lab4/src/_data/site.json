@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Kvadrat - Acting Academy | Chisinau",
+    "description": "Kvadrat Acting Academy offers professional acting training in Chisinau, Moldova.",
+    "lang": "en"
+  },
+  "brand": "KVADRAT",
+  "nav": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Courses",
+      "href": "#courses"
+    },
+    {
+      "label": "Gallery",
+      "href": "#gallery"
+    },
+    {
+      "label": "Testimonials",
+      "href": "#testimonials"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "navCta": {
+    "label": "Enroll Now",
+    "href": "#contact"
+  },
+  "footer": {
+    "brandDescription": "Chisinau's acting academy for aspiring performers of all levels.",
+    "quickLinks": [
+      {
+        "label": "About Us",
+        "href": "#about"
+      },
+      {
+        "label": "Courses",
+        "href": "#courses"
+      },
+      {
+        "label": "Gallery",
+        "href": "#gallery"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "coursesLinks": [
+      {
+        "label": "Acting Fundamentals",
+        "href": "#courses"
+      },
+      {
+        "label": "Scene Study and Improv",
+        "href": "#courses"
+      },
+      {
+        "label": "Voice and Movement",
+        "href": "#courses"
+      },
+      {
+        "label": "On-Camera Acting",
+        "href": "#courses"
+      }
+    ],
+    "social": [
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/kvadrat.academy.md"
+      },
+      {
+        "label": "Instagram",
+        "href": "#"
+      }
+    ],
+    "copyright": "Copyright 2026 Kvadrat Acting Academy. All rights reserved."
+  }
+}
