@@ -4,7 +4,7 @@ backend:
 
 local_backend: true
 
-media_folder: "src/assets/images"
+media_folder: "lab4/src/assets/images"
 public_folder: "/assets/images"
 
 collections:
@@ -13,7 +13,7 @@ collections:
     files:
       - label: "Site Data"
         name: "site"
-        file: "src/_data/site.json"
+        file: "lab4/src/_data/site.json"
         format: "json"
         fields:
           - label: "Meta"
@@ -74,7 +74,7 @@ collections:
     files:
       - label: "Home Sections"
         name: "home"
-        file: "src/content/home.md"
+        file: "lab4/src/content/home.md"
         fields:
           - { label: "Tags", name: "tags", widget: "hidden", default: "home" }
           - {
@@ -278,7 +278,7 @@ collections:
 
   - name: "courses"
     label: "Courses"
-    folder: "src/content/courses"
+    folder: "lab4/src/content/courses"
     create: true
     slug: "{{slug}}"
     fields:
@@ -312,7 +312,7 @@ collections:
 
   - name: "testimonials"
     label: "Testimonials"
-    folder: "src/content/testimonials"
+    folder: "lab4/src/content/testimonials"
     create: true
     slug: "{{slug}}"
     fields:
@@ -343,7 +343,7 @@ collections:
 
   - name: "gallery"
     label: "Gallery"
-    folder: "src/content/gallery"
+    folder: "lab4/src/content/gallery"
     create: true
     slug: "{{slug}}"
     fields:
