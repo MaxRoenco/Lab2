@@ -7,7 +7,7 @@ hide_about_section: false
 hide_programs_section: false
 hide_gallery_section: false
 hide_testimonials_section: false
-hide_contact_section: true
+hide_contact_section: false
 hide_mascot: false
 hide_mobile_cta_bar: false
 hero_label: Chisinau's Premier Acting Academy
