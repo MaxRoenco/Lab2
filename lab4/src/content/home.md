@@ -14,7 +14,10 @@ hero_label: Chisinau's Premier Acting Academy
 hero_title: Find Your<br />Stage.
 hero_subtitle: Kvadrat is where passion meets craft. Professional acting
   training in a creative, supportive environment for beginners to advanced
-  performers.
+  performers. Kvadrat is where passion meets craft. Professional acting training
+  in a creative, supportive environment for beginners to advanced performers.
+  Kvadrat is where passion meets craft. Professional acting training in a
+  creative, supportive environment for beginners to advanced performers.
 hero_primary_label: Explore Courses
 hero_primary_href: "#courses"
 hero_secondary_label: Learn More
