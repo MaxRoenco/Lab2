@@ -4,6 +4,7 @@ title: Kvadrat - Acting Academy | Chisinau
 ---
 {% set home = collections.home[0].data %}
 
+{% if not home.hide_hero_section %}
 <section class="hero" id="home" aria-label="Hero">
   <div class="hero__bg" aria-hidden="true"></div>
 
@@ -29,7 +30,9 @@ title: Kvadrat - Acting Academy | Chisinau
     <div class="hero__scroll-line"></div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_mobile_spotlight_section %}
 <section class="mobile-spotlight" aria-label="Academy highlights">
   <div class="mobile-spotlight__inner mx-auto max-w-[480px] text-center">
     <p class="mobile-spotlight__eyebrow">{{ home.mobile_spotlight_eyebrow }}</p>
@@ -52,7 +55,9 @@ title: Kvadrat - Acting Academy | Chisinau
     >
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_about_section %}
 <section class="about" id="about" aria-label="About Kvadrat">
   <div class="container">
     <div class="about__grid">
@@ -89,7 +94,9 @@ title: Kvadrat - Acting Academy | Chisinau
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_programs_section %}
 <section class="courses" id="courses" aria-label="Courses">
   <div class="container">
     <div class="section-header">
@@ -123,7 +130,9 @@ title: Kvadrat - Acting Academy | Chisinau
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_gallery_section %}
 <section class="gallery" id="gallery" aria-label="Gallery">
   <div class="container">
     <div class="section-header">
@@ -142,7 +151,9 @@ title: Kvadrat - Acting Academy | Chisinau
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_testimonials_section %}
 <section class="testimonials" id="testimonials" aria-label="Testimonials">
   <div class="container">
     <div class="section-header">
@@ -169,7 +180,9 @@ title: Kvadrat - Acting Academy | Chisinau
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_contact_section %}
 <section class="contact" id="contact" aria-label="Contact">
   <div class="container">
     <div class="contact__grid">
@@ -259,7 +272,9 @@ title: Kvadrat - Acting Academy | Chisinau
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if not home.hide_mascot %}
 <div class="mascot" id="mascot" aria-label="Kvadrat mascot">
   <div class="mascot__bubble" role="tooltip" id="mascotBubble">
     <p>{{ home.mascot_message }}</p>
@@ -338,10 +353,13 @@ title: Kvadrat - Acting Academy | Chisinau
     </svg>
   </div>
 </div>
+{% endif %}
 
+{% if not home.hide_mobile_cta_bar %}
 <div class="mobile-cta-bar items-center" aria-label="Enroll call to action" id="mobileCta">
   <span class="mobile-cta-bar__text">{{ home.mobile_cta_text }}</span>
   <a href="{{ home.mobile_cta_href }}" class="btn btn--accent btn--sm"
     >{{ home.mobile_cta_label }}</a
   >
 </div>
+{% endif %}

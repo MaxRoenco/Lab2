@@ -83,6 +83,69 @@ collections:
               widget: "hidden",
               default: false,
             }
+          - {
+              label: "Hide Hero Section",
+              name: "hide_hero_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Mobile Spotlight Section",
+              name: "hide_mobile_spotlight_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide About Section",
+              name: "hide_about_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Programs Section",
+              name: "hide_programs_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Gallery Section",
+              name: "hide_gallery_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Testimonials Section",
+              name: "hide_testimonials_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Contact Section",
+              name: "hide_contact_section",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Mascot",
+              name: "hide_mascot",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
+          - {
+              label: "Hide Mobile CTA Bar",
+              name: "hide_mobile_cta_bar",
+              widget: "boolean",
+              default: false,
+              required: false,
+            }
           - { label: "Hero Label", name: "hero_label", widget: "string" }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }

@@ -1,6 +1,15 @@
 ---
 tags: home
 permalink: false
+hide_hero_section: false
+hide_mobile_spotlight_section: false
+hide_about_section: false
+hide_programs_section: false
+hide_gallery_section: false
+hide_testimonials_section: false
+hide_contact_section: false
+hide_mascot: false
+hide_mobile_cta_bar: false
 hero_label: "Chisinau's Premier Acting Academy"
 hero_title: "Find Your<br />Stage."
 hero_subtitle: "Kvadrat is where passion meets craft. Professional acting training in a creative, supportive environment for beginners to advanced performers."
