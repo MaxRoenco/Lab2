@@ -6,7 +6,8 @@
   "description": "Lab 7 CRUD API with JWT authorization for Kvadrat Studio Planner sessions.",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "test": "node test/smoke-test.js"
   },
   "engines": {
     "node": ">=18"
