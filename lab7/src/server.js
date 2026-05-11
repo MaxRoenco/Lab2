@@ -441,95 +441,40 @@ function docsHtml() {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lab 7 API Docs</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
     <style>
       :root { color-scheme: light dark; font-family: Inter, system-ui, sans-serif; }
       body { margin: 0; background: #f7f4ec; color: #1f2428; }
-      main { max-width: 1040px; margin: 0 auto; padding: 32px; }
-      h1, h2 { font-family: Georgia, "Times New Roman", serif; }
-      section { background: #fffdf8; border: 1px solid #ded7ca; border-radius: 8px; padding: 20px; margin: 16px 0; }
-      code, pre { background: #eee7da; border-radius: 6px; }
-      code { padding: 2px 5px; }
-      pre { padding: 16px; overflow-x: auto; }
-      a, button { color: #1f2428; }
-      button { min-height: 40px; border: 0; border-radius: 8px; padding: 0 16px; background: #bd9334; font-weight: 800; cursor: pointer; }
-      input, select, textarea { width: 100%; min-height: 38px; box-sizing: border-box; border: 1px solid #ded7ca; border-radius: 8px; padding: 8px; }
-      label { display: grid; gap: 6px; margin: 10px 0; font-weight: 700; }
-      .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      header { padding: 24px 32px 10px; }
+      h1 { margin: 0 0 8px; font-family: Georgia, "Times New Roman", serif; }
+      p { margin: 0; max-width: 900px; line-height: 1.6; }
+      code { padding: 2px 5px; border-radius: 6px; background: #eee7da; }
+      #swagger-ui { padding: 0 16px 32px; }
       @media (prefers-color-scheme: dark) {
         body { background: #181b1f; color: #f4efe5; }
-        section { background: #22272b; border-color: #3b4448; }
-        code, pre { background: #2b3136; }
-        a { color: #f0cf86; }
+        code { background: #2b3136; }
       }
-      @media (max-width: 760px) { main { padding: 16px; } .grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
-    <main>
+    <header>
       <h1>Lab 7 Kvadrat Sessions API</h1>
-      <p>OpenAPI document: <a href="/openapi.json">/openapi.json</a>. All <code>/api/*</code> routes require a Bearer JWT from <code>POST /token</code>.</p>
-
-      <section>
-        <h2>Try It</h2>
-        <div class="grid">
-          <label>Role
-            <select id="role">
-              <option>ADMIN</option>
-              <option>WRITER</option>
-              <option>VISITOR</option>
-            </select>
-          </label>
-          <label>Limit
-            <input id="limit" type="number" value="10" min="1" max="100" />
-          </label>
-          <label>Skip
-            <input id="skip" type="number" value="0" min="0" />
-          </label>
-        </div>
-        <button id="tokenButton">Get Token</button>
-        <button id="listButton">List Sessions</button>
-        <pre id="output">No request yet.</pre>
-      </section>
-
-      <section>
-        <h2>Permissions</h2>
-        <p><code>VISITOR</code> can read, <code>WRITER</code> can read/write, and <code>ADMIN</code> can read/write/delete. Tokens expire after 60 seconds for demo purposes.</p>
-      </section>
-
-      <section>
-        <h2>Core Routes</h2>
-        <pre>POST   /token
-GET    /api/sessions?limit=10&skip=0
-POST   /api/sessions
-GET    /api/sessions/:id
-PUT    /api/sessions/:id
-PATCH  /api/sessions/:id/like
-DELETE /api/sessions/:id</pre>
-      </section>
-    </main>
+      <p>
+        Swagger UI is generated from <code>/openapi.json</code>. Use
+        <code>POST /token</code> first, then authorize with
+        <code>Bearer &lt;token&gt;</code> for protected session routes.
+      </p>
+    </header>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
     <script>
-      let token = "";
-      const output = document.querySelector("#output");
-      document.querySelector("#tokenButton").addEventListener("click", async () => {
-        const role = document.querySelector("#role").value;
-        const response = await fetch("/token", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ role })
+      window.addEventListener("load", () => {
+        window.ui = SwaggerUIBundle({
+          url: "/openapi.json",
+          dom_id: "#swagger-ui",
+          deepLinking: true,
+          persistAuthorization: true
         });
-        const data = await response.json();
-        token = data.token || "";
-        output.textContent = JSON.stringify(data, null, 2);
-      });
-      document.querySelector("#listButton").addEventListener("click", async () => {
-        const limit = document.querySelector("#limit").value;
-        const skip = document.querySelector("#skip").value;
-        const response = await fetch("/api/sessions?limit=" + limit + "&skip=" + skip, {
-          headers: { Authorization: "Bearer " + token }
-        });
-        const text = await response.text();
-        try { output.textContent = JSON.stringify(JSON.parse(text), null, 2); }
-        catch { output.textContent = text; }
       });
     </script>
   </body>
