@@ -5,6 +5,7 @@ type Level = "Beginner" | "Intermediate" | "Advanced";
 type Status = "Open" | "Waitlist" | "Closed";
 type Theme = "light" | "dark";
 type SortMode = "upcoming" | "newest";
+type ApiRole = "ADMIN" | "WRITER" | "VISITOR";
 
 type Session = {
   id: string;
@@ -32,9 +33,31 @@ type Filters = {
 
 type SessionForm = Omit<Session, "id" | "liked" | "createdAt">;
 
+type ApiListResponse = {
+  data: Session[];
+  pagination: {
+    total: number;
+    limit: number;
+    skip: number;
+    nextSkip: number | null;
+    previousSkip: number | null;
+  };
+};
+
+type TokenResponse = {
+  token: string;
+  expiresIn: number;
+  role: ApiRole;
+  permissions: string[];
+};
+
 const SESSION_KEY = "kvadrat_lab6_sessions";
 const THEME_KEY = "kvadrat_lab6_theme";
 const FILTERS_KEY = "kvadrat_lab6_filters";
+const API_BASE_KEY = "kvadrat_lab7_api_base";
+const API_TOKEN_KEY = "kvadrat_lab7_token";
+const API_ROLE_KEY = "kvadrat_lab7_role";
+const DEFAULT_API_BASE_URL = "http://localhost:4007";
 
 const courses: Course[] = [
   "Acting Fundamentals",
@@ -44,6 +67,7 @@ const courses: Course[] = [
 ];
 const levels: Level[] = ["Beginner", "Intermediate", "Advanced"];
 const statuses: Status[] = ["Open", "Waitlist", "Closed"];
+const apiRoles: ApiRole[] = ["ADMIN", "WRITER", "VISITOR"];
 
 const emptyForm: SessionForm = {
   title: "",
@@ -143,6 +167,11 @@ function getInitialTheme(): Theme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+function getInitialApiRole(): ApiRole {
+  const savedRole = readStorage<ApiRole | null>(API_ROLE_KEY, null);
+  return savedRole && apiRoles.includes(savedRole) ? savedRole : "ADMIN";
+}
+
 function createId() {
   if ("crypto" in window && "randomUUID" in window.crypto) {
     return window.crypto.randomUUID();
@@ -163,6 +192,10 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00`));
 }
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Unexpected API error.";
+}
+
 function App() {
   const [sessions, setSessions] = useState<Session[]>(() =>
     readStorage<Session[]>(SESSION_KEY, seededSessions),
@@ -175,6 +208,15 @@ function App() {
   }));
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formError, setFormError] = useState("");
+  const [apiBaseUrl, setApiBaseUrl] = useState(() =>
+    readStorage<string>(API_BASE_KEY, DEFAULT_API_BASE_URL),
+  );
+  const [apiToken, setApiToken] = useState(() => readStorage<string>(API_TOKEN_KEY, ""));
+  const [apiRole, setApiRole] = useState<ApiRole>(() => getInitialApiRole());
+  const [apiBusy, setApiBusy] = useState(false);
+  const [apiMessage, setApiMessage] = useState(
+    "Offline mode is active until you request a Lab 7 token.",
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -188,6 +230,18 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem(FILTERS_KEY, JSON.stringify(filters));
   }, [filters]);
+
+  useEffect(() => {
+    window.localStorage.setItem(API_BASE_KEY, JSON.stringify(apiBaseUrl));
+  }, [apiBaseUrl]);
+
+  useEffect(() => {
+    window.localStorage.setItem(API_TOKEN_KEY, JSON.stringify(apiToken));
+  }, [apiToken]);
+
+  useEffect(() => {
+    window.localStorage.setItem(API_ROLE_KEY, JSON.stringify(apiRole));
+  }, [apiRole]);
 
   const visibleSessions = useMemo(() => {
     const search = filters.search.trim().toLowerCase();
@@ -223,7 +277,78 @@ function App() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function apiRequest<T>(path: string, options: RequestInit = {}) {
+    if (!apiToken) {
+      throw new Error("Request a Lab 7 token first.");
+    }
+
+    const headers = new Headers(options.headers);
+    headers.set("Content-Type", "application/json");
+    headers.set("Authorization", `Bearer ${apiToken}`);
+
+    const response = await fetch(`${apiBaseUrl.replace(/\/$/, "")}${path}`, {
+      ...options,
+      headers,
+    });
+
+    if (response.status === 204) {
+      return null as T;
+    }
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || `API request failed with ${response.status}.`);
+    }
+
+    return data as T;
+  }
+
+  function resetForm() {
+    setForm({
+      ...emptyForm,
+      date: new Date().toISOString().slice(0, 10),
+    });
+  }
+
+  async function requestApiToken() {
+    setApiBusy(true);
+    try {
+      const response = await fetch(`${apiBaseUrl.replace(/\/$/, "")}/token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: apiRole }),
+      });
+      const data = (await response.json()) as TokenResponse | { error?: string };
+
+      if (!response.ok || !("token" in data)) {
+        throw new Error("error" in data && data.error ? data.error : "Could not request token.");
+      }
+
+      setApiToken(data.token);
+      setApiMessage(
+        `${data.role} token ready for ${data.expiresIn} seconds with ${data.permissions.join(", ")}.`,
+      );
+    } catch (error) {
+      setApiMessage(getErrorMessage(error));
+    } finally {
+      setApiBusy(false);
+    }
+  }
+
+  async function loadFromApi() {
+    setApiBusy(true);
+    try {
+      const response = await apiRequest<ApiListResponse>("/api/sessions?limit=100&skip=0");
+      setSessions(response.data);
+      setApiMessage(`Loaded ${response.data.length} of ${response.pagination.total} sessions from Lab 7.`);
+    } catch (error) {
+      setApiMessage(getErrorMessage(error));
+    } finally {
+      setApiBusy(false);
+    }
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!form.title.trim() || !form.mentor.trim() || !form.date || !form.time) {
@@ -237,6 +362,37 @@ function App() {
     }
 
     setFormError("");
+
+    if (apiToken) {
+      setApiBusy(true);
+      try {
+        if (editingId) {
+          const updatedSession = await apiRequest<Session>(`/api/sessions/${editingId}`, {
+            method: "PUT",
+            body: JSON.stringify(form),
+          });
+          setSessions((current) =>
+            current.map((session) => (session.id === editingId ? updatedSession : session)),
+          );
+          setEditingId(null);
+          setApiMessage("Session updated through the Lab 7 API.");
+        } else {
+          const createdSession = await apiRequest<Session>("/api/sessions", {
+            method: "POST",
+            body: JSON.stringify(form),
+          });
+          setSessions((current) => [createdSession, ...current]);
+          setApiMessage("Session created through the Lab 7 API.");
+        }
+
+        resetForm();
+      } catch (error) {
+        setApiMessage(getErrorMessage(error));
+      } finally {
+        setApiBusy(false);
+      }
+      return;
+    }
 
     if (editingId) {
       setSessions((current) =>
@@ -255,10 +411,7 @@ function App() {
       ]);
     }
 
-    setForm({
-      ...emptyForm,
-      date: new Date().toISOString().slice(0, 10),
-    });
+    resetForm();
   }
 
   function editSession(session: Session) {
@@ -271,14 +424,30 @@ function App() {
 
   function cancelEdit() {
     setEditingId(null);
-    setForm({
-      ...emptyForm,
-      date: new Date().toISOString().slice(0, 10),
-    });
+    resetForm();
     setFormError("");
   }
 
-  function toggleLike(id: string) {
+  async function toggleLike(id: string) {
+    if (apiToken) {
+      setApiBusy(true);
+      try {
+        const updatedSession = await apiRequest<Session>(`/api/sessions/${id}/like`, {
+          method: "PATCH",
+          body: JSON.stringify({}),
+        });
+        setSessions((current) =>
+          current.map((session) => (session.id === id ? updatedSession : session)),
+        );
+        setApiMessage("Favorite state updated through the Lab 7 API.");
+      } catch (error) {
+        setApiMessage(getErrorMessage(error));
+      } finally {
+        setApiBusy(false);
+      }
+      return;
+    }
+
     setSessions((current) =>
       current.map((session) =>
         session.id === id ? { ...session, liked: !session.liked } : session,
@@ -286,7 +455,24 @@ function App() {
     );
   }
 
-  function deleteSession(id: string) {
+  async function deleteSession(id: string) {
+    if (apiToken) {
+      setApiBusy(true);
+      try {
+        await apiRequest<null>(`/api/sessions/${id}`, { method: "DELETE" });
+        setSessions((current) => current.filter((session) => session.id !== id));
+        setApiMessage("Session removed through the Lab 7 API.");
+      } catch (error) {
+        setApiMessage(getErrorMessage(error));
+      } finally {
+        setApiBusy(false);
+      }
+      if (editingId === id) {
+        cancelEdit();
+      }
+      return;
+    }
+
     setSessions((current) => current.filter((session) => session.id !== id));
     if (editingId === id) {
       cancelEdit();
@@ -297,6 +483,7 @@ function App() {
     setSessions(seededSessions);
     setFilters(defaultFilters);
     cancelEdit();
+    setApiMessage("Demo data reset locally. Use Load from API to refresh from Lab 7.");
   }
 
   return (
@@ -340,6 +527,56 @@ function App() {
           <span>Studio capacity</span>
           <strong>{totalCapacity}</strong>
         </article>
+      </section>
+
+      <section className="panel api-panel" aria-labelledby="api-title">
+        <div className="panel-heading">
+          <div>
+            <p className="eyebrow">Lab 7 bridge</p>
+            <h2 id="api-title">API connection</h2>
+          </div>
+          <span className={`api-state ${apiToken ? "is-connected" : ""}`}>
+            {apiToken ? "Token active" : "Offline"}
+          </span>
+        </div>
+
+        <div className="api-grid">
+          <div className="field">
+            <label htmlFor="api-base">API base URL</label>
+            <input
+              id="api-base"
+              value={apiBaseUrl}
+              onChange={(event) => setApiBaseUrl(event.target.value)}
+              placeholder="http://localhost:4007"
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="api-role">Role</label>
+            <select
+              id="api-role"
+              value={apiRole}
+              onChange={(event) => setApiRole(event.target.value as ApiRole)}
+            >
+              {apiRoles.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button className="secondary-button" type="button" onClick={requestApiToken} disabled={apiBusy}>
+            Get 1-minute token
+          </button>
+          <button className="primary-button api-load-button" type="button" onClick={loadFromApi} disabled={apiBusy}>
+            Load from API
+          </button>
+        </div>
+
+        <p className="api-message" role="status">
+          {apiMessage}
+        </p>
       </section>
 
       <div className="planner-layout">

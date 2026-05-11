@@ -28,6 +28,10 @@ DEFAULT_TIMEOUT = 15
 MAX_REDIRECTS = 5
 DEFAULT_CACHE_TTL = 120
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 
 class Go2WebError(Exception):
     """Raised for user-facing operational errors."""

@@ -25,6 +25,7 @@ Users can:
 - Sort by upcoming date or newest created.
 - Switch between light and dark themes.
 - Reset the seeded demo data.
+- Connect to the Lab 7 API with a one-minute JWT and mirror session CRUD operations.
 
 ## User Flows
 
@@ -54,6 +55,14 @@ Users can:
    - The app switches between light and dark mode.
    - The selected theme is saved in `localStorage`.
 
+6. Lab 7 API flow
+   - Start the Lab 7 API from `../lab7`.
+   - Keep the API base URL as `http://localhost:4007` or enter another API URL.
+   - Select `ADMIN`, `WRITER`, or `VISITOR`.
+   - Press `Get 1-minute token`.
+   - Press `Load from API` to replace the visible sessions with API data.
+   - Add, edit, like, or remove sessions. With a valid token, the app sends the operation to the API.
+
 ## Requirements Checklist
 
 - Front-end framework/library: React + Vite + TypeScript.
@@ -61,6 +70,7 @@ Users can:
 - Manipulable entities: sessions can be added, edited, removed, liked, filtered, and sorted.
 - Runtime state: React state stores the active app data.
 - Browser storage: `localStorage` persists sessions, filters, and theme.
+- Lab 7 integration: optional API bridge stores base URL, selected role, and short-lived token in `localStorage`.
 - Custom style: Kvadrat-inspired dashboard theme with responsive layout.
 - Light/dark version: theme toggle with persistence.
 - Public link: GitHub Pages deployment target is `/Lab2/lab6/`.
@@ -71,6 +81,35 @@ Users can:
 - `kvadrat_lab6_sessions`
 - `kvadrat_lab6_theme`
 - `kvadrat_lab6_filters`
+- `kvadrat_lab7_api_base`
+- `kvadrat_lab7_token`
+- `kvadrat_lab7_role`
+
+## Lab 7 API Integration
+
+The app remains usable as a client-side-only Lab 6 project. For the Lab 7 demo, it can also connect to the JWT-protected API.
+
+Start the API:
+
+```powershell
+cd ..\lab7
+npm.cmd start
+```
+
+Then run the client:
+
+```powershell
+cd ..\lab6
+npm.cmd run dev
+```
+
+Role behavior:
+
+- `VISITOR` can load sessions.
+- `WRITER` can load, add, edit, and like sessions.
+- `ADMIN` can also remove sessions.
+
+Tokens expire after 60 seconds, so request a new token during the demo when an operation returns an expiration error.
 
 ## Run Locally
 
@@ -102,8 +141,17 @@ npm.cmd run preview
 The Vite app is configured with:
 
 ```ts
-base: "/Lab2/lab6/"
+base: "./"
 ```
+
+The relative base keeps built assets working both from the GitHub Pages subpath and from a Vercel root deployment.
+
+For Vercel:
+
+- Import the GitHub repository in Vercel.
+- Set the project root directory to `lab6`.
+- Use the Vite framework preset, or set build command to `npm run build`.
+- Set output directory to `dist`.
 
 The GitHub Actions workflow builds `lab6`, copies the current root static site into the Pages artifact, copies the Lab 6 build into `public/lab6`, and deploys the result to GitHub Pages.
 

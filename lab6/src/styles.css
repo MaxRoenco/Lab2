@@ -239,6 +239,46 @@ button:hover {
   font-size: 2.15rem;
 }
 
+.api-panel {
+  margin-bottom: 22px;
+}
+
+.api-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.7fr) minmax(120px, 0.6fr) auto auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.api-state {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: var(--surface-strong);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.api-state.is-connected {
+  background: color-mix(in srgb, var(--teal) 16%, var(--surface));
+  color: var(--teal);
+  border-color: color-mix(in srgb, var(--teal) 35%, transparent);
+}
+
+.api-load-button {
+  width: auto;
+}
+
+.api-message {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .planner-layout {
   display: grid;
   grid-template-columns: minmax(310px, 410px) minmax(0, 1fr);
@@ -450,6 +490,7 @@ textarea {
   }
 
   .filters-grid,
+  .api-grid,
   .session-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -476,6 +517,7 @@ textarea {
   .stats-grid,
   .field-grid,
   .filters-grid,
+  .api-grid,
   .session-list,
   .session-meta {
     grid-template-columns: 1fr;
@@ -490,7 +532,8 @@ textarea {
 
   .ghost-button,
   .secondary-button,
-  .danger-button {
+  .danger-button,
+  .api-load-button {
     width: 100%;
   }
 

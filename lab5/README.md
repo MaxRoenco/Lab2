@@ -8,6 +8,10 @@ This folder contains a CLI tool named go2web that performs HTTP requests using r
 - go2web -s <search-term>: search with DuckDuckGo and print top 10 results.
 - go2web -h: show help.
 
+## Demo
+
+![go2web working example](assets/go2web-demo.gif)
+
 ## Features
 
 - Raw HTTP/1.1 over sockets (socket + optional ssl wrapping for HTTPS).
@@ -36,25 +40,25 @@ cd .\lab5
 4. Verify Python is available.
 
 ```powershell
-py -3 --version
+python --version
 ```
 
 5. Run help to confirm CLI works.
 
 ```powershell
-py -3 .\go2web.py -h
+.\go2web.cmd -h
 ```
 
 6. Test URL request mode.
 
 ```powershell
-py -3 .\go2web.py -u https://example.com
+.\go2web.cmd -u https://example.com
 ```
 
 7. Test search mode.
 
 ```powershell
-py -3 .\go2web.py -s static site generator
+.\go2web.cmd -s static site generator
 ```
 
 8. Test Windows wrapper executable.
@@ -68,13 +72,13 @@ py -3 .\go2web.py -s static site generator
 9. Optional: verify redirect handling.
 
 ```powershell
-py -3 .\go2web.py -u "https://httpbin.org/redirect-to?url=https://example.com"
+.\go2web.cmd -u "https://httpbin.org/redirect-to?url=https://example.com"
 ```
 
 10. Optional: verify JSON rendering.
 
 ```powershell
-py -3 .\go2web.py -u https://httpbin.org/json
+.\go2web.cmd -u https://httpbin.org/json
 ```
 
 11. Record your terminal demo GIF for README submission requirement.
@@ -92,10 +96,10 @@ git push origin master
 
 From this folder:
 
-```bash
-python go2web.py -h
-python go2web.py -u https://example.com
-python go2web.py -s acting academy chisinau
+```powershell
+.\go2web.cmd -h
+.\go2web.cmd -u https://example.com
+.\go2web.cmd -s acting academy chisinau
 ```
 
 ## Executable wrappers
