@@ -34,7 +34,8 @@ A session contains:
   - `ADMIN`: `READ`, `WRITE`, `DELETE`
 - Appropriate response status codes: `200`, `201`, `204`, `400`, `401`, `403`, `404`, `405`, `422`.
 - Pagination with `limit` and `skip`.
-- OpenAPI JSON and a browser docs/testing page.
+- OpenAPI JSON and Swagger UI documentation.
+- Automated smoke test for token roles, CRUD, pagination, docs, and status codes.
 - Partial Lab 6 integration through an API connection panel in the frontend.
 
 ## Run Locally
@@ -59,6 +60,16 @@ Documentation:
 
 - http://localhost:4007/docs
 - http://localhost:4007/openapi.json
+
+## Test
+
+Run the smoke test:
+
+```powershell
+npm.cmd test
+```
+
+The test starts the API on a separate port and verifies JWT roles, protected CRUD operations, pagination, status codes, Swagger UI, and OpenAPI output.
 
 ## Authentication Flow
 
